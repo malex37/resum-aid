@@ -1,2 +1,3 @@
-# resum-aid
-Resume printer and generator
+# Resum-aid
+
+Realtively simple application to build and template resumes
