@@ -4,16 +4,25 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "npm run build && vite",
+    "clean": "rm -rf dist",
+    "prebuild": "npx tailwindcss -i src/styles/* -o ./dist/output.css && npm run copy-tw-output",
     "build": "tsc && vite build",
+    "copy-tw-output": "cp ./dist/output.css ./src/assets",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
+    "dexie": "^3.2.4",
+    "dexie-react-hooks": "^1.1.6",
+    "localforage": "^1.10.0",
+    "match-sorter": "^6.3.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "sort-by": "^0.0.2"
   },
   "devDependencies": {
     "@types/node": "^20.5.6",

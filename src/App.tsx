@@ -1,41 +1,52 @@
 import { useEffect, useState } from 'react';
-import reactLogo from '@/assets/react.svg';
-import viteLogo from '~/vite.svg';
 import './App.css'
+import Spinner from './components/spinner';
+import { loadStored } from './methods/loadStored';
+import './assets/output.css'
+import { Link } from 'react-router-dom';
 
 function App() {
-  const [count, setCount] = useState(0);
-  let loaded = false;
-  let spinner = true;
+  let foundDocs: JSX.Element[] = [];
+  let [loaded, setLoaded] = useState(false);
+  const spinner = <Spinner />;
   useEffect(() => {
-    const storedData = localStorage.getItem('resumeData');
-    if (storedData) {
-      loaded = true;
-    }
-    // Load spinner
-  });
+    console.info('Loading local data');
+    loadStored().then(dbEntries => {
+      if (dbEntries.length === 0) {
+        setLoaded(true);
+        return;
+      }
+      setLoaded(true);
+      dbEntries.map(entry => {
+        foundDocs.push(
+        <>
+          <div>{ entry.documentName }</div>
+          <div>{ entry.createDate.toDateString() }</div>
+        </>);
+      });
+    });
+  }, []);
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    { !loaded ? spinner
+      : 
+      <>
+      {
+        foundDocs.length > 0 ?
+        <div className='flex columns-2'>
+          foundDocs
+        </div>
+        :
+        null
+      }
+        <div className='flex-gr columns-2'>
+          <div><p className='text-2xl'>Create a new Document</p></div>
+          <div></div>
+          <div></div>
+          <Link to="/new">New Document</Link>
+        </div>
+      </>
+    }
     </>
   )
 }
