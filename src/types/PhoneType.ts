@@ -1,9 +1,11 @@
-export enum PhoneIds {
-  Cell = 'Cellphone',
-  Home = 'Home',
-  Other = 'Other'
-}
+export const PhoneIds = {
+  Cell: 'Cellphone',
+  Home: 'Home',
+  Other: 'Other',
+  None: 'None'
+} as const;
+
 export interface Phone {
-  type: PhoneIds;
+  type: keyof typeof PhoneIds;
   value: string | number;
 }

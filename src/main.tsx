@@ -7,25 +7,29 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import ContactInfo from './views/ContacInfo'
+import RootContext from './states/RootState'
 import NewDocument from './views/NewDocument'
-import { NewDocumentContext } from './states/NewDocumentContext'
-import { DocumentType } from './types/DocumentType'
 
+// TODO: Change paths to be a const value
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
   },
   {
-    path: "/new",
-    element:<NewDocument />
+    path: "/contactInfo",
+    element:<ContactInfo />
+  },
+  {
+    path: "/newDocument",
+    element:  <NewDocument />
   }
 ]);
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <NewDocumentContext.Provider value={new DocumentType()}>
+    <RootContext>
       <RouterProvider router={router} />
-    </NewDocumentContext.Provider>
-  </React.StrictMode>,
+    </RootContext>
+  </React.StrictMode>
 )

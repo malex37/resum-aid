@@ -26,10 +26,9 @@ function App() {
       });
     });
   }, []);
-  return (
-    <>
-    { !loaded ? spinner
-      : 
+
+  return ( 
+    loaded ? 
       <>
       {
         foundDocs.length > 0 ?
@@ -39,16 +38,18 @@ function App() {
         :
         null
       }
-        <div className='flex-gr columns-2'>
-          <div><p className='text-2xl'>Create a new Document</p></div>
-          <div></div>
-          <div></div>
-          <Link to="/new">New Document</Link>
+        <div className='flex-gr columns-1'>
+          <div><p className='text-2xl'>Options</p></div>
+          <div>
+            <Link to="/contactInfo">Contact Info</Link>
+          </div>
+          <div>
+          <Link to="/newDocument">New Document</Link>
+          </div>
         </div>
       </>
-    }
-    </>
-  )
+    : spinner
+  );
 }
 
 export default App
