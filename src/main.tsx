@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import ContactInfo from './views/ContacInfo'
 import RootContext from './states/RootState'
-import NewDocument from './views/NewDocument'
+import JobHistory from './views/JobHistory'
 
 // TODO: Change paths to be a const value
 const router = createBrowserRouter([
@@ -22,8 +22,8 @@ const router = createBrowserRouter([
     element:<ContactInfo />
   },
   {
-    path: "/newDocument",
-    element:  <NewDocument />
+    path: "/jobHistory",
+    element:  <JobHistory />
   }
 ]);
 ReactDOM.createRoot(document.getElementById('root')!).render(

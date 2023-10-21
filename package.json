@@ -6,8 +6,7 @@
   "scripts": {
     "dev": "npm run build && vite",
     "clean": "rm -rf dist",
-    "prebuild": "npx tailwindcss -i src/styles/* -o ./src/assets/output.css",
-    "build": "TAILWIND_MODE=watch && tsc && vite build",
+    "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },

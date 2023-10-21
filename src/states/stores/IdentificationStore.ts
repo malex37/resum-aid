@@ -9,18 +9,15 @@ export const IdentificationActionNames = {
 
 export type IdentificationStateType = {
   name?: string;
-  phoneNumber: Phone;
+  phoneNumbers: Phone[];
   email?: string;
 };
 
 // Initial state
 export let IdentificationState: IdentificationStateType = {
-  name: '',
-  phoneNumber: {
-    value: '',
-    type: PhoneIds.None,
-  },
-  email: '',
+  name: 'Unknown',
+  phoneNumbers: [],
+  email: 'null',
 };
 
 export interface SetNamePayload {
@@ -55,8 +52,7 @@ export const IdentificationStateActionTree: ActionTreeType = {
     return state;
   },
   [IdentificationActionNames.SetPhoneNumber]: (state, payload: SetPhoneNumberPayload) => {
-    state.phoneNumber.value = payload.phone.value;
-    state.phoneNumber.type = payload.phone.type;
+    state.phoneNumbers.push(payload.phone);
     return state;
   }
 };

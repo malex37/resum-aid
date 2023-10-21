@@ -3,13 +3,15 @@ import { createContext, useReducer } from "react";
 import { JobDescriptionDataType, JobDescriptionActionPayloads, JobDescriptionStateActionTree } from "./stores/JobDescriptionDataType";
 
 export interface RootState {
+  // specific to a document?
   JobDescriptionData: JobDescriptionDataType;
+  // Common to the user
   IdentificationStore: IdentificationStateType;
-  documents: { [name: string]: any }
+  documents: { [name: string]: DocumentType }
 }
 
 export const rootState: RootState = {
-  JobDescriptionData:  {},
+  JobDescriptionData: {},
   IdentificationStore: IdentificationState,
   documents: { }
 };
